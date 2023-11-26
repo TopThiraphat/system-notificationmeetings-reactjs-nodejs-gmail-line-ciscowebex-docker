@@ -1,0 +1,41 @@
+#####################################################################################
+version: "3.9"
+#####################################################################################
+services:
+  #####################################################################################
+  frontend:
+    container_name: ${ENV_NAME_WEBAPP_FRONTEND}
+    build:
+      dockerfile: webapp_frontend.Dockerfile
+      context: .
+      target: prod
+    image: webapp_frontend
+    ports:
+      - "3000:3000"
+    networks:
+      backend:
+        ipv4_address: ${ENV_IP_WEBAPP_FRONTEND}
+    volumes:
+      - ./frontend:/app
+    restart: always
+  #####################################################################################
+  backend:
+    container_name: ${ENV_NAME_WEBAPP_BACKEND}
+    build:
+      dockerfile: webapp_backend.Dockerfile
+      context: .
+      target: dev
+    image: webapp_backend
+    ports:
+      - "8085:8085"
+    networks:
+      backend:
+        ipv4_address: ${ENV_IP_WEBAPP_BACKEND}
+    volumes:
+      - ./backend:/app
+    restart: always
+#####################################################################################
+networks:
+  backend:
+    name: webapp_network
+#####################################################################################
