@@ -10,6 +10,10 @@
 - **Language**
     - javascript(reactjs)
     - javascript(nodejs)
+- **State Management Libraries**
+    - react-redux
+    - redux-logger
+    - redux-thunk
 - **framework**
     - bootstrap v3.3.7 
     - template adminLTE v2.4.0
